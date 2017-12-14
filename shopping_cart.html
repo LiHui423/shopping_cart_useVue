@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>shopping_cart</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/shopping_cart.css">
+</head>
+<body>
+
+    <div class="header">
+        <div id="logo">
+            <a href="#" class="logo"></a>
+        </div>
+    </div>
+    <div class="big">
+        <!--点击删除按钮时弹出模态框-->
+        <div class="modal" v-if="delFlag" v-bind:class="{'md-show':delFlag}">
+            <div class="modal_dialog">
+                <div class="modal_header">
+                    删除提醒
+                </div>
+                <div class="modal_information">
+                    <img src="img/model_img2.png" alt="" />
+                    <span>确定删除您的这个宝贝吗？</span>
+                </div>
+                <div class="yes" @click="delProduct()"><span>删除</span></div>
+                <div class="no" @click="delFlag=false"><span>不删除</span></div>
+            </div>
+        </div>
+        <div class="md-overlay" v-show="delFlag"></div>
+        <form name="" action="" method="post">
+            <section id="section">
+                <div id="title">
+                    <b>购物车</b>
+                </div>
+                <div id="box">
+                    <div id="content_box">
+                        <div class="imfor_top">
+                            <div class="check_top">
+                            </div>
+                            <div class="pudc_top">商品</div>
+                            <div class="pices_top">单价(元)</div>
+                            <div class="num_top">数量</div>
+                            <div class="totle_top">金额</div>
+                            <div class="del_top">操作</div>
+                        </div>
+                        <div id="content_box_body">
+                            <!--商品-->
+                            <div class="imfor" v-for="item in productList">
+                                <div class="check">
+                                    <div class="Each">
+                                          <span class="normal">
+                                              <a href="javascript:void 0" class="item-check-btn" v-bind:class="{'check':item.checked}" @click="selectedProduct(item)">
+                                                  <input type="checkbox" name="" @change="singleSelect()" v-model="item.isCheck" :id="item.id">
+                                              </a>
+                                          </span>
+                                        <input type="hidden" name="" value="">
+                                    </div>
+                                </div>
+                                <div class="pudc">
+                                    <div class="pudc_information" id="pudcId4">
+                                        <img src="img/product_simg1.png" class="lf"/>
+                                        <input type="hidden" name="" value="">
+                                        <span class="des lf">
+                                                  <a href="#">{{item.productName}}</a>
+                                                  <input type="hidden" name="" value="">
+                                              </span>
+                                        <p class="col lf"><span>颜色：</span><span class="color_des">{{item.productColor}}  <input type="hidden" name=""
+                                                                                                              value=""></span></p>
+                                    </div>
+                                </div>
+                                <div class="pices">
+                                    <p class="pices_information"><b></b><span>{{item.productPrice | formatMoney}}  <input type="hidden" name="" value=""></span></p>
+                                </div>
+                                <div class="num">
+                                    <span class="reduc" @click="changeMoney(item,-1)">&nbsp;-&nbsp;</span>
+                                    <input type="text" value="1" v-model="item.productQuantity">
+                                    <span class="add" @click="changeMoney(item,1)">&nbsp;+&nbsp;</span>
+                                </div>
+                                <div class="totle">
+                                    <span class="totle_information">{{item.productPrice*item.productQuantity| money("元")}}</span>
+                                </div>
+                                <div class="del">
+                                    <a href="javascript:;" class="del_d" @click="delConfirm(item)">删除</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="foot">
+                        <div class="foot_check">
+                            <div class="all">
+                                <span class="normal">
+                                    <!--<img src="img/product_normal.png" alt=""/>-->
+                                </span>
+                                <input type="checkbox" name="" id="allId" v-model="allData.parCheck" @change="allSelect()" @click="checkAll(true)">全选
+                            </div>
+                        </div>
+                        <a href="javascript:;" class="foot_del" @click="delConfirm(item)">删除</a>
+                        <div class="foot_qk">清空失效商品</div>
+                        <div class="foot_cash" id="go-buy">去结算</div>
+                        <div class="foot_tol"><span>合计(不含运费):</span><span class="foot_pices susumOne">{{totalMoney| money("元")}}</span><span class='foot_des'></span></div>
+                    </div>
+                </div>
+            </section>
+        </form>
+    </div>
+    <div class="footer">
+    </div>
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/vue.js"></script>
+    <script src="js/vue-resource.js"></script>
+    <script src="js/cart.js"></script>
+
+</body>
+</html>

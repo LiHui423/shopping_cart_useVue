@@ -1,0 +1,22 @@
+{
+  "status": 1,
+  "result": {
+    "totalMoney": 9776.00,
+    "list": [{
+      "productId": "600100002115",
+      "productName": "联想(Lenovo)YOGA5 PRO 标配版电脑(i5-7200u 8G 512G SSD FHD IPS)银",
+      "productPrice": 4888.00,
+      "productQuantity": 1,
+      "productImage": "img/product_simg1.png",
+      "productColor":"深空灰"
+    }, {
+      "productId": "600100002115",
+      "productName": "联想(Lenovo)YOGA5 PRO 标配版电脑(i5-7200u 8G 512G SSD FHD IPS)银",
+      "productPrice": 4888.00,
+      "productQuantity": 1,
+      "productImage": "img/product_simg1.png",
+      "productColor":"土豪金"
+    }]
+  },
+  "message": ""
+}
